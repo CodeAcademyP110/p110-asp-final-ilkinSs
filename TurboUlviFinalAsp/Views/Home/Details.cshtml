@@ -1,0 +1,155 @@
+﻿@model DetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    var Number = 1;
+}
+
+
+    <section>
+        <div class="container">
+            <div class="row" style="background:black ">
+                <div class="col-6">
+                    @*<img src="~/image/@Model.Announcement.PhotoUrl" class="ElanImg img-fluid" style="width: 100%">*@
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        @foreach (var image in Model.Announcement.Images)
+                        {
+                            <div class="col-4 mt-3">
+                                <img src="~/image/@image.Name" class="ElanImg img-fluid" style="width: 100%">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h1>Normal Elan</h1>
+            </div>
+            <div class="row">
+                <div class="col-4" style="border:1px solid black">
+                    <span style="font-weight: bold">Price</span>:@Model.Announcement.Price $
+                </div>
+                <div class="col-4" style="border:1px solid black">
+                    <span style="font-weight: bold">Number</span>:@Model.Announcement.ApplicationUser.PhoneNumber
+                </div>
+                <div class="col-4" style="border:1px solid black">
+                    @*Baxışların sayı:  @(Number++)*@
+                    <br>
+                    Yeniləndi: 23 İyul 2019
+                    <br>
+                    Elanın nömrəsi: @Model.Announcement.Id
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Model</td>
+                                <td>@Model.Announcement.Model.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Şəhər</td>
+                                <td>@Model.Announcement.City.Name</td>
+                            </tr>
+
+                            <tr>
+                                <td>Marka</td>
+                                <td>@Model.Announcement.Model.marca.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Buraxılış ili</td>
+                                <td>@String.Format("{0:yyyy-MM-dd}", Model.Announcement.PublishDate.Date)</td>
+                            </tr>
+                            <tr>
+                                <td>Ban növü</td>
+                                <td>@Model.Announcement.CarBody.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Rəng</td>
+                                <td>@Model.Announcement.Color.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Mühərrikin həcmi</td>
+                                <td>@(Model.Announcement.Motor.Hecmi / 100) L</td>
+                            </tr>
+
+                            <tr>
+                                <td>Yanacaq növü</td>
+                                <td>@Model.Announcement.Fuel.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Yürüş</td>
+                                <td>@Model.Announcement.Distance km</td>
+                            </tr>
+                            <tr>
+                                <td>Sürətlər qutusu</td>
+                                <td>@Model.Announcement.GearBox.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Ötürücü</td>
+                                <td>@Model.Announcement.Transmission.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Qiymət</td>
+                                <td>@Model.Announcement.Price $</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <h3>@Model.Announcement.ShortInfo</h3>
+                    <p>@Model.Announcement.FullInfo</p>
+                </div>
+            </div>
+          </div>
+    </section>
+}
+
+<section>
+    <div class="wrapper">
+        <div class="products">
+            @foreach (var item in Model.Announcements)
+            {
+                <a class="productBorder" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">
+                    <div class="onliCar">
+                        <i class="far fa-heart likeIcon"></i>
+                        <img src="~/image/@item.PhotoUrl" alt="">
+                        <div class="productPrice">
+                            @item.Price <span>AZN</span>
+                        </div>
+                        <div class="productsInfo">
+                            <span class="carName">@item.Model.marca.Name</span>
+                            <span class="carName">@item.Model.Name</span>
+                            <div class="carInfo">
+                                <p class="year">
+                                    @item.GraduationYear.Year il
+                                    <span></span>
+                                </p>
+                                <p class="engin">
+                                    @(item.Motor.Hecmi / 100) L
+                                    <span></span>
+                                </p>
+                                <p class="km">@item.Distance km </p>
+                            </div>
+                            <div class="enterDay">
+                                @item.City.Name,@String.Format("{0:MM/dd/yyyy}", item.PublishDate)
+                                @if (item.IsVip == true)
+                                {
+                                    <i class="fas fa-gem"></i>
+                                }
+                                else
+                                {
+                                    <i class="fal fa-gem"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="clear"></div>
+    </div>
+</section>

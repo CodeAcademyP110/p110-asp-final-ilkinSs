@@ -1,0 +1,124 @@
+﻿@model Announcement
+
+<div class="container">
+    <div class="row">
+        <div style="margin-bottom:50px" class="col-12">
+
+            <form class="mt-5" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="text-danger">
+                </div>
+                <div style="padding-right:20px" class="col-5">
+                    <div class="form-group">
+                        <label>Marka</label>
+                        <select asp-items="@(new SelectList(ViewBag.Marcas, "Id", "Name"))"  id="Model_MarcaId">
+                            <option value="">Marka secin</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModelId">Model</label>
+                        <select class="form-control" asp-for="ModelId"></select>
+                        <span asp-validation-for="ModelId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CarBodyId">Car Body</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.CarBodies, "Id", "Name"))" asp-for="@Model.CarBodyId">
+                            <option>Select car body</option>
+                        </select>
+                        <span asp-validation-for="CarBodyId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GraduationYearId">Graduation Year</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.GraduationYears, "Id", "Year"))" asp-for="@Model.GraduationYearId"></select>
+                        <span asp-validation-for="GraduationYearId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MotorId">Motor</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.Motors, "Id", "Hecmi"))" asp-for="@Model.MotorId"></select>
+                        <span asp-validation-for="MotorId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price"></label>
+                        <input class="form-control" placeholder="Price" asp-for="Price">
+                        <span asp-validation-for="Price"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsVip">As Vip</label>
+                        <input style="height:15px;width:15px" asp-for="IsVip">
+                    </div>
+                </div>
+                <div class="col-5" style="padding-left:20px">
+                    <div class="form-group">
+                        <label asp-for="GearBoxId">Gear Box</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.GearBoxes, "Id", "Name"))" asp-for="@Model.GearBoxId"></select>
+                        <span asp-validation-for="GearBoxId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ColorId">Color</label>
+                        <select asp-items="@(new SelectList(ViewBag.Colors, "Id", "Name"))" asp-for="@Model.ColorId"></select>
+                        <span asp-validation-for="ColorId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CityId">City</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.Cities, "Id", "Name"))" asp-for="@Model.CityId"></select>
+                        <span asp-validation-for="CityId"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FuelId">City</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.Fuels, "Id", "Name"))" asp-for="@Model.FuelId"></select>
+                        <span asp-validation-for="FuelId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TransmissionId">Transmission</label>
+                        <select class="form-control" asp-items="@(new SelectList(ViewBag.Transmissions, "Id", "Name"))" asp-for="@Model.TransmissionId"></select>
+                        <span asp-validation-for="TransmissionId"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Distance"></label>
+                        <input class="form-control" placeholder="Distance" asp-for="Distance">
+                        <span asp-validation-for="Distance"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FullInfo"></label>
+                        <textarea asp-for="FullInfo" class="form-control" placeholder="Info About Car"></textarea>
+                        <span asp-validation-for="FullInfo"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShortInfo"></label>
+                        <textarea asp-for="ShortInfo" class="form-control" placeholder="Short Info"></textarea>
+                        <span asp-validation-for="ShortInfo"></span>
+                    </div>
+                </div>
+                <!--photos-->
+                <div class="container" style="margin-top:10px;">
+                    <h1 for="Image">Images</h1>
+                    <p>Please input images for cover</p>
+                    <div class="single-area text-center " style="width:200px;height:50px;    background: #060606;  padding: 16px; color: white; border-radius: 32px;">
+                        Add Photo
+                        <input class="single-photo d-none" asp-for="Photos">
+                    </div>
+                    <div class="single-droparea-Image" style="background:lightgray">
+                    </div>
+                </div>
+                <div class="container">
+                    <p>Please input images for car from different side</p>
+                    <div class="area text-center " style="width:200px;height:50px;    background: #060606;  padding: 16px; color: white; border-radius: 32px;">
+                        Add Photo
+                        <input class="photo d-none" multiple asp-for="AllPhotos">
+                    </div>
+                    <div class="droparea-Image" style="background:lightgray">
+                    </div>
+                </div>
+
+                <div class="col-12"> <button type="submit" class="btn btn-primary">Add Advertisement</button></div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
